@@ -12,7 +12,7 @@ export function About() {
     {
       icon: Award,
       title: 'Artesanía Experta',
-      description: 'Más de 30 años de experiencia en diseño de joyería fina'
+      description: 'Hecho a mano por joyeros con décadas de experiencia'
     },
     {
       icon: Heart,
@@ -40,16 +40,15 @@ export function About() {
             className="text-4xl sm:text-5xl mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Sobre Lumière
+            Sobre Amora
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Desde 1995, hemos estado creando momentos inolvidables a través de nuestra joyería excepcional.
-            Cada pieza es una obra maestra diseñada para celebrar tu individualidad y estilo único.
+            Somos una empresa de joyeria dedicada a ofrecer piezas que combinan elegancia y calidad.
           </p>
         </motion.div>
 
         {/* Image Gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -94,7 +93,7 @@ export function About() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.div>
-        </div>
+        </div> */}
 
         {/* Features */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

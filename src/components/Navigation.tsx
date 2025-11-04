@@ -42,7 +42,7 @@ export function Navigation({ activeSection, onNavigate }: NavigationProps) {
           >
             <Sparkles className="h-6 w-6 text-primary transition-transform group-hover:rotate-12" />
             <span className="text-2xl tracking-wide" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Lumière
+              Amora
             </span>
           </button>
 
@@ -66,14 +66,14 @@ export function Navigation({ activeSection, onNavigate }: NavigationProps) {
           </div>
 
           {/* Cart Button */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* <div className="hidden md:flex items-center gap-4">
             <Button variant="outline" size="icon" className="relative" aria-label="Carrito de compras">
               <ShoppingBag className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-accent flex items-center justify-center text-xs">
                 0
               </span>
             </Button>
-          </div>
+          </div> */}
 
           {/* Mobile Menu Button */}
           <button

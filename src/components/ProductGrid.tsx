@@ -9,11 +9,14 @@ interface ProductGridProps {
 
 export function ProductGrid({ products }: ProductGridProps) {
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'women' | 'men'>('all');
+  const [selectedType, setSelectedType] = useState<'all' | 'aretes' | 'collares' | 'anillos' | 'brazaletes'>('all');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const filteredProducts = selectedCategory === 'all' 
-    ? products 
-    : products.filter(p => p.category === selectedCategory);
+  const filteredProducts = products.filter(p => {
+    const categoryMatch = selectedCategory === 'all' || p.category === selectedCategory;
+    const typeMatch = selectedType === 'all' || (p.type && p.type === selectedType);
+    return categoryMatch && typeMatch;
+  });
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-secondary/30">
@@ -30,23 +33,34 @@ export function ProductGrid({ products }: ProductGridProps) {
           </p>
 
           {/* Category Filter */}
-          <Tabs 
-            value={selectedCategory} 
-            onValueChange={(value) => setSelectedCategory(value as 'all' | 'women' | 'men')}
-            className="inline-block"
-          >
-            <TabsList className="bg-white shadow-sm">
-              <TabsTrigger value="all" className="px-6">
-                Todos
-              </TabsTrigger>
-              <TabsTrigger value="women" className="px-6">
-                Mujer
-              </TabsTrigger>
-              <TabsTrigger value="men" className="px-6">
-                Hombre
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Tabs 
+              value={selectedCategory} 
+              onValueChange={(value) => setSelectedCategory(value as 'all' | 'women' | 'men')}
+              className="inline-block"
+            >
+              <TabsList className="bg-white shadow-sm">
+                <TabsTrigger value="all" className="px-6">Todos</TabsTrigger>
+                <TabsTrigger value="women" className="px-6">Mujer</TabsTrigger>
+                <TabsTrigger value="men" className="px-6">Hombre</TabsTrigger>
+              </TabsList>
+            </Tabs>
+
+            {/* Type Filter */}
+            <Tabs
+              value={selectedType}
+              onValueChange={(value) => setSelectedType(value as 'all' | 'aretes' | 'collares' | 'anillos' | 'brazaletes')}
+              className="inline-block"
+            >
+              <TabsList className="bg-white shadow-sm">
+                <TabsTrigger value="all" className="px-4">Todos los tipos</TabsTrigger>
+                <TabsTrigger value="aretes" className="px-4">Aretes</TabsTrigger>
+                <TabsTrigger value="collares" className="px-4">Collares</TabsTrigger>
+                <TabsTrigger value="anillos" className="px-4">Anillos</TabsTrigger>
+                <TabsTrigger value="brazaletes" className="px-4">Brazaletes</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
         </div>
 
         {/* Products Grid */}
@@ -63,7 +77,7 @@ export function ProductGrid({ products }: ProductGridProps) {
         {filteredProducts.length === 0 && (
           <div className="text-center py-16">
             <p className="text-lg text-muted-foreground">
-              No hay productos disponibles en esta categoría.
+              No hay productos disponibles con esos filtros.
             </p>
           </div>
         )}
@@ -74,7 +88,7 @@ export function ProductGrid({ products }: ProductGridProps) {
         <ProductDetail
           product={selectedProduct}
           isOpen={!!selectedProduct}
-          onClose={() => setSelectedProduct(null)}
+          onClose={() => setSelectedProduct(null)}s
         />
       )}
     </section>

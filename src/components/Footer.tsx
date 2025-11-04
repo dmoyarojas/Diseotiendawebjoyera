@@ -26,9 +26,9 @@ export function Footer() {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Twitter, href: '#', label: 'Twitter' }
+    { icon: Facebook, href: 'https://www.tiktok.com/@amorajoyeria_', label: 'Tiktok' },
+    { icon: Instagram, href: 'https://www.instagram.com/amorajoyeria___/', label: 'Instagram' },
+    
   ];
 
   return (
@@ -44,11 +44,11 @@ export function Footer() {
                 className="text-2xl tracking-wide"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
-                Lumière
+                Amora
               </span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-sm">
-              Creando momentos inolvidables a través de joyería excepcional desde 1995.
+              Creando momentos inolvidables a través de joyería excepcional.
               Cada pieza es una obra maestra de elegancia atemporal.
             </p>
             
@@ -57,16 +57,16 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <span className="text-sm text-muted-foreground">
-                  Av. Principal 123, Centro Comercial Luxury Plaza
+                  La Libertad - Trujillo
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">+1 (555) 123-4567</span>
+                <span className="text-sm text-muted-foreground">+51 919 679 978</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">contacto@lumiere.com</span>
+                <span className="text-sm text-muted-foreground">dboriña@gmail.com</span>
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@ export function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div className="bg-white rounded-2xl p-8 mb-12 shadow-sm">
+        {/* <div className="bg-white rounded-2xl p-8 mb-12 shadow-sm">
           <div className="max-w-xl mx-auto text-center">
             <h3 
               className="text-2xl mb-2"
@@ -150,14 +150,14 @@ export function Footer() {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <Separator className="mb-8" />
 
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Lumière. Todos los derechos reservados.
+            © {currentYear} Amora. Todos los derechos reservados.
           </p>
 
           {/* Social Links */}

@@ -11,6 +11,7 @@ export interface Product {
   price: number;
   image: string;
   category: 'women' | 'men';
+  type: 'anillos' | 'collares' | 'brazaletes' | 'aretes';
   material: string;
   description: string;
   isNew?: boolean;
@@ -21,6 +22,8 @@ interface ProductCardProps {
   product: Product;
   onViewDetails: (product: Product) => void;
 }
+//numero
+const VENDOR_WHATSAPP_NUMBER = '51919679978';
 
 export function ProductCard({ product, onViewDetails }: ProductCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -30,6 +33,19 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
     ? product.price - (product.price * product.discount / 100)
     : product.price;
 
+//mnsaje de wasa personalizado
+  const getWhatsAppUrl = () => {
+    const message = `¡Hola Amora Joyería!💗 Estoy interesad@ en comprar el siguiente producto:
+    
+    *Artículo:* ${product.name}
+    *Precio:* S./${finalPrice.toLocaleString()}
+    *Material:* ${product.material}
+    
+    Por favor, envíame los detalles para completar mi pedido. ¡Gracias!✨`;
+
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/${VENDOR_WHATSAPP_NUMBER}?text=${encodedMessage}`;
+  }
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -101,6 +117,8 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
             {product.material}
           </span>
         </div>
+
+        
         
         <h3 
           className="text-xl mb-2 line-clamp-1"
@@ -117,7 +135,7 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-baseline gap-2">
             <span className="text-2xl text-primary">
-              ${finalPrice.toLocaleString()}
+              S./{finalPrice.toLocaleString()} PEN
             </span>
             {product.discount && (
               <span className="text-sm text-muted-foreground line-through">
@@ -127,18 +145,26 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
           </div>
         </div>
 
-        {/* Add to Cart Button */}
-        <Button 
-          className="w-full group/button"
-          onClick={(e) => {
-            e.stopPropagation();
-            // Add to cart logic here
-          }}
-          aria-label={`Agregar ${product.name} al carrito`}
+      
+        {/* Usamos e.stopPropagation() en el enlace para evitar que abra la vista de detalles */}
+        <a 
+          href={getWhatsAppUrl()} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()} // Detiene la propagación del clic al div padre (que es onClick={() => onViewDetails...})
+          className="w-full block" // Esto asegura que el enlace ocupe todo el ancho de la tarjeta
         >
-          <ShoppingCart className="h-4 w-4 mr-2 transition-transform group-hover/button:scale-110" />
-          Agregar al Carrito
-        </Button>
+          {/* El componente Button está ahora DENTRO del enlace <a> */}
+          <Button 
+            className="w-full group/button"
+            // Nota: Ya no necesitamos un onClick aquí, el <a> se encarga de la navegación.
+            aria-label={`Comprar ${product.name} por WhatsApp`}
+          >
+            <ShoppingCart className="h-4 w-4 mr-2 transition-transform group-hover/button:scale-110" />
+            Comprar por WhatsApp
+          </Button>
+        </a>
+        
       </div>
     </motion.div>
   );
